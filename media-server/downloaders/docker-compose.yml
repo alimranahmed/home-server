@@ -11,6 +11,10 @@ services:
             - /dev/net/tun
         volumes:
             - /home-server-data/GluetunVpn/config:/gluetun
+        ports:
+            - "83:8080"       # qBittorrent Web UI (mapped to port 83)
+            - "6881:6881/tcp" # Torrent TCP port
+            - "6881:6881/udp" # Torrent UDP port
         environment:
             - VPN_SERVICE_PROVIDER=private internet access
             - OPENVPN_USER=${OPENVPN_USER}
@@ -32,10 +36,6 @@ services:
         volumes:
             - /home-server-data/QBittorrent/config:/config
             - /home-server-data/downloads:/downloads
-        ports:
-            - 83:8080
-            - 6881:6881
-            - 6881:6881/udp
 
     radarr:
         image: linuxserver/radarr
