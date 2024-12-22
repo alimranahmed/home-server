@@ -9,6 +9,6 @@ services:
         ports:
             - "82:8096"
         volumes:
-            - /home-server-data/jellyfin/config:/config
-            - /home-server-data/contents:/media
+            - /home-server-data/Jellyfin/config:/config
+            - /home-server-data/Contents:/media
         restart: unless-stopped
