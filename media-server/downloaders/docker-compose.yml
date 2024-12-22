@@ -48,7 +48,7 @@ services:
             - PGID=1000
             - TZ=Europe/Berlin
         ports:
-            - "85:9696"  # Prowlarr Web UI exposed on port 85
+            - "83:9696"  # Prowlarr Web UI exposed on port 83
         volumes:
             - /home-server-data/Prowlarr/config:/config
         restart: unless-stopped
@@ -59,7 +59,7 @@ services:
         depends_on:
             - qbittorrent  # Ensure Radarr starts after qBittorrent
         ports:
-            - "83:7878"  # Radarr Web UI exposed on port 83
+            - "84:7878"  # Radarr Web UI exposed on port 84
         volumes:
             - /home-server-data/Radarr/config:/config
             - /home-server-data/downloads:/downloads  # Shared downloads folder with qBittorrent
