@@ -4,6 +4,7 @@ services:
     vpn:
         image: qmcgaw/gluetun
         container_name: vpn
+        restart: unless-stopped
         cap_add:
             - NET_ADMIN # This needed for vpn to modify network traffic
         devices:
@@ -16,12 +17,9 @@ services:
             - /home-server-data/GluetunVpn/config:/gluetun
         environment:
             - VPN_SERVICE_PROVIDER=private internet access
-            - VPN_TYPE=openvpn
-            - OPENVPN_CONFIG_FILE=/home-server-data/PrivateInternetAccess/vpn_server_access_config.ovpn
-            - TZ=Europe/Berlin
-            - FIREWALL_VPN_INPUT_PORTS=8080,6881
-            - FIREWALL_OUTBOUND_SUBNETS=192.168.1.0/24
-        restart: unless-stopped
+            - OPENVPN_USER=${OPENVPN_USER}
+            - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
+            - SERVER_REGIONS=${OPENVPN_REGION}
 
     qbittorrent:
         image: linuxserver/qbittorrent
