@@ -37,6 +37,22 @@ services:
             - /home-server-data/QBittorrent/config:/config
             - /home-server-data/downloads:/downloads
 
+    prowlarr:
+        image: lscr.io/linuxserver/prowlarr:latest
+        container_name: prowlarr
+        depends_on:
+            - vpn # Ensure Prowlarr starts after VPN
+        network_mode: "service:vpn" # Route traffic through the VPN container
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/Berlin
+        ports:
+            - "85:9696"  # Prowlarr Web UI exposed on port 85
+        volumes:
+            - /home-server-data/Prowlarr/config:/config
+        restart: unless-stopped
+
     radarr:
         image: linuxserver/radarr
         container_name: radarr
