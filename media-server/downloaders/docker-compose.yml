@@ -12,9 +12,10 @@ services:
         volumes:
             - /home-server-data/GluetunVpn/config:/gluetun
         ports:
-            - "8080:8080"     # qBittorrent Web UI to port 8080)
+            - "8080:8080"     # qBittorrent Web UI on port 8080
             - "6881:6881/tcp" # Torrent TCP port
             - "6881:6881/udp" # Torrent UDP port
+            - "83:9696"  # Prowlarr Web UI exposed on port 83
         environment:
             - VPN_SERVICE_PROVIDER=private internet access
             - OPENVPN_USER=${OPENVPN_USER}
@@ -47,8 +48,6 @@ services:
             - PUID=1000
             - PGID=1000
             - TZ=Europe/Berlin
-        ports:
-            - "83:9696"  # Prowlarr Web UI exposed on port 83
         volumes:
             - /home-server-data/Prowlarr/config:/config
         restart: unless-stopped
