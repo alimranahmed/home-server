@@ -8,7 +8,7 @@
 4. Edit this file `sudo vim /etc/resolv.conf` to change `nameserver 127.0.0.53` to `nameserver 1.1.1.1` in the file
 5. Run the docker container `sudo docker-compose up -d`
 6. Visit `http://<machines-ip-address>:3000` to set up AdGuard(eg. Password) for the 1st time
-7. Visit: `http://<machines-ip-address>:81` and you should see the AdGuard Home login page
+7. Visit `http://<machines-ip-address>:81` and you should see the AdGuard Home login page
 8. Make sure you set the DNS in your router to the ip address(ipv4 and ipv6) of the machine where AdGuard Home is installed
 9. Now you should see all the block add in the AdGuard Home web interface
 
