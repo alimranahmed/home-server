@@ -2,7 +2,7 @@
 Can download contents
 
 ### Services
-1. VPN(used [Private Internet Access(https://www.privateinternetaccess.com/)])
+1. VPN(used [Private Internet Access](https://www.privateinternetaccess.com/))
 2. [QBittorrent](https://www.qbittorrent.org)(depends on VPN)
 3. [Radarr](https://radarr.video)(depends on QBittorrent)
 
