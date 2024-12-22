@@ -1,4 +1,3 @@
-version: '3.8'
 name: AdGuardHome
 
 services:
@@ -10,7 +9,7 @@ services:
             - "81:80/tcp"
             - "3000:3000/tcp"
         volumes:
-            - /home-server/AdGuardHome/config:/opt/AdGuardHome/conf
-            - /home-server/AdGuardHome/work:/opt/AdGuardHome/work
+            - /home-server-data/AdGuardHome/config:/opt/AdGuardHome/conf
+            - /home-server-data/AdGuardHome/work:/opt/AdGuardHome/work
         environment:
             - TZ=Europe/Berlin
