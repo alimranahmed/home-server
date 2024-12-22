@@ -1,0 +1,16 @@
+version: '3.8'
+
+name: Jellyfin
+
+services:
+    jellyfin:
+        image: jellyfin/jellyfin:latest
+        container_name: jellyfin
+        ports:
+            - "8096:8096"
+        volumes:
+            - /home-server/jellyfin/config:/config
+            - /home-server/contents:/media
+        environment:
+            - TZ=Europe/Berlin
+        restart: unless-stopped
