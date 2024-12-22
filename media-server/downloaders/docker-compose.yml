@@ -47,7 +47,7 @@ services:
         image: lscr.io/linuxserver/prowlarr:latest
         container_name: prowlarr
         depends_on:
-            - vpn # Ensure Prowlarr starts after VPN
+            - vpn
         network_mode: "service:vpn" # Route traffic through the VPN container
         volumes:
             - /home-server-data/downloaders/prowlarr/config:/config
@@ -57,7 +57,7 @@ services:
         image: linuxserver/radarr
         container_name: radarr
         depends_on:
-            - vpn # Ensure Radarr starts after VPN
+            - vpn
         network_mode: "service:vpn" # Route traffic through the VPN container
         volumes:
             - /home-server-data/downloaders/radarr/config:/config
@@ -68,6 +68,8 @@ services:
     bazarr: # for downloading subtitles
         image: lscr.io/linuxserver/bazarr:latest
         container_name: bazarr
+        depends_on:
+            - vpn
         environment:
             - PUID=1000
             - PGID=1000
