@@ -28,7 +28,6 @@ services:
             - "6881:6881/udp" # Torrent UDP port
             - "9696:9696" # Prowlarr Web UI exposed on port 9696
             - "7878:7878" # Radarr Web UI exposed on port 7878
-            - "6767:6767" # Bazarr Web UI exposed on port 6767
 
     qbittorrent: #torrent downloader used by prowlarr and radarr
         image: qbittorrentofficial/qbittorrent-nox
@@ -70,10 +69,13 @@ services:
         container_name: bazarr
         depends_on:
             - vpn
-        network_mode: "service:vpn" # Route traffic through the VPN container
+        networks:
+            - shared_network
         environment:
             - PUID=1000
             - PGID=1000
+        ports:
+            - "6767:6767"  # Bazarr Web UI on port 6767
         volumes:
             - /home-server-data/downloaders/bazarr/config:/config
         restart: unless-stopped
