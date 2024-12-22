@@ -1,7 +1,4 @@
 name: VPN
-networks:
-    vpn_network:
-        driver: bridge
 
 services:
     vpn:
@@ -32,14 +29,10 @@ services:
         image: qbittorrentofficial/qbittorrent-nox
         container_name: qbittorrent
         restart: unless-stopped
-        networks:
-            - vpn_network
+        network_mode: service:vpn
         depends_on:
             - vpn
         environment:
-            - PUID=1000
-            - PGID=1000
-            - TZ=Europe/Berlin
             - WEBUI_PORT=8080
         volumes:
             - /home-server-data/QBittorrent/config:/config
@@ -50,12 +43,7 @@ services:
         container_name: prowlarr
         depends_on:
             - vpn # Ensure Prowlarr starts after VPN
-        networks:
-            - vpn_network
-        environment:
-            - PUID=1000
-            - PGID=1000
-            - TZ=Europe/Berlin
+        network_mode: service:vpn
         volumes:
             - /home-server-data/Prowlarr/config:/config
         restart: unless-stopped
@@ -65,14 +53,9 @@ services:
         container_name: radarr
         depends_on:
             - vpn # Ensure Radarr starts after VPN
-        networks:
-            - vpn_network
+        network_mode: service:vpn
         volumes:
             - /home-server-data/Radarr/config:/config
             - /home-server-data/downloads:/downloads  # Shared downloads folder with qBittorrent
             - /home-server-data/Contents:/media  # Shared media folder for movie storage(eg. Jellyfin)
-        environment:
-            - PUID=1000
-            - PGID=1000
-            - TZ=Europe/Berlin
         restart: unless-stopped
