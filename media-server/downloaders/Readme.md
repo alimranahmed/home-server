@@ -14,3 +14,4 @@ Can download contents
 5. qBittorrent web UI can be accessed: `http://<machines-ip-address>:83`
 6. Radarr web UI can be access: `http://<machines-ip-address>:84`
 7. **Check VPN** working: `docker exec -it qbittorrent curl https://checkip.amazonaws.com`
+8. **Check** qBittorrent doesn't work if VPN container is down
