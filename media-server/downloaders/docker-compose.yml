@@ -22,17 +22,18 @@ services:
             - OPENVPN_USER=${OPENVPN_USER}
             - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
             - SERVER_REGIONS=${OPENVPN_REGIONS}
+        ports:
+            - "8080:8080"     # qBittorrent Web UI on port 8080
+            - "6881:6881/tcp" # Torrent TCP port
+            - "6881:6881/udp" # Torrent UDP port
+            - "9696:9696"  # Prowlarr Web UI exposed on port 9696
+            - "7878:7878"  # Radarr Web UI exposed on port 7878
 
     qbittorrent:
         image: qbittorrentofficial/qbittorrent-nox
         container_name: qbittorrent
         restart: unless-stopped
-        networks:
-            - shared_network
-        ports:
-            - "8080:8080"     # qBittorrent Web UI on port 8080
-            - "6881:6881/tcp" # Torrent TCP port
-            - "6881:6881/udp" # Torrent UDP port
+        network_mode: "service:vpn" # Route traffic through the VPN container
         depends_on:
             - vpn
         environment:
@@ -46,12 +47,9 @@ services:
         container_name: prowlarr
         depends_on:
             - vpn # Ensure Prowlarr starts after VPN
-        networks:
-            - shared_network
+        network_mode: "service:vpn" # Route traffic through the VPN container
         volumes:
             - /home-server-data/Prowlarr/config:/config
-        ports:
-            - "9696:9696"  # Prowlarr Web UI exposed on port 9696
         restart: unless-stopped
 
     radarr:
@@ -59,12 +57,9 @@ services:
         container_name: radarr
         depends_on:
             - vpn # Ensure Radarr starts after VPN
-        networks:
-            - shared_network
+        network_mode: "service:vpn" # Route traffic through the VPN container
         volumes:
             - /home-server-data/Radarr/config:/config
             - /home-server-data/downloads:/downloads  # Shared downloads folder with qBittorrent
             - /home-server-data/Contents:/media  # Shared media folder for movie storage(eg. Jellyfin)
-        ports:
-            - "7878:7878"  # Radarr Web UI exposed on port 7878
         restart: unless-stopped
