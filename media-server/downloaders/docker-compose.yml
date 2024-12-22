@@ -1,4 +1,4 @@
-name: VPN
+name: Downloaders
 
 networks:
     shared_network:
@@ -16,7 +16,7 @@ services:
         devices:
             - /dev/net/tun
         volumes:
-            - /home-server-data/GluetunVpn/config:/gluetun
+            - /home-server-data/downloaders/gluetunVpn/config:/gluetun
         environment:
             - VPN_SERVICE_PROVIDER=private internet access
             - OPENVPN_USER=${OPENVPN_USER}
@@ -26,10 +26,11 @@ services:
             - "8080:8080"     # qBittorrent Web UI on port 8080
             - "6881:6881/tcp" # Torrent TCP port
             - "6881:6881/udp" # Torrent UDP port
-            - "9696:9696"  # Prowlarr Web UI exposed on port 9696
-            - "7878:7878"  # Radarr Web UI exposed on port 7878
+            - "9696:9696" # Prowlarr Web UI exposed on port 9696
+            - "7878:7878" # Radarr Web UI exposed on port 7878
+            - "6767:6767" # Bazarr Web UI exposed on port 6767
 
-    qbittorrent:
+    qbittorrent: #torrent downloader used by prowlarr and radarr
         image: qbittorrentofficial/qbittorrent-nox
         container_name: qbittorrent
         restart: unless-stopped
@@ -39,27 +40,37 @@ services:
         environment:
             - WEBUI_PORT=8080
         volumes:
-            - /home-server-data/QBittorrent/config:/config
+            - /home-server-data/downloaders/qBittorrent/config:/config
             - /home-server-data/downloads:/downloads
 
-    prowlarr:
+    prowlarr: # for managing indexes and searching contents
         image: lscr.io/linuxserver/prowlarr:latest
         container_name: prowlarr
         depends_on:
             - vpn # Ensure Prowlarr starts after VPN
         network_mode: "service:vpn" # Route traffic through the VPN container
         volumes:
-            - /home-server-data/Prowlarr/config:/config
+            - /home-server-data/downloaders/prowlarr/config:/config
         restart: unless-stopped
 
-    radarr:
+    radarr: # for managing+downloading movies with pre-specified quality,size etc.
         image: linuxserver/radarr
         container_name: radarr
         depends_on:
             - vpn # Ensure Radarr starts after VPN
         network_mode: "service:vpn" # Route traffic through the VPN container
         volumes:
-            - /home-server-data/Radarr/config:/config
+            - /home-server-data/downloaders/radarr/config:/config
             - /home-server-data/downloads:/downloads  # Shared downloads folder with qBittorrent
             - /home-server-data/Contents:/media  # Shared media folder for movie storage(eg. Jellyfin)
+        restart: unless-stopped
+
+    bazarr: # for downloading subtitles
+        image: lscr.io/linuxserver/bazarr:latest
+        container_name: bazarr
+        environment:
+            - PUID=1000
+            - PGID=1000
+        volumes:
+            - /home-server-data/downloaders/bazarr/config:/config
         restart: unless-stopped
