@@ -32,7 +32,6 @@ services:
         image: qbittorrentofficial/qbittorrent-nox
         container_name: qbittorrent
         restart: unless-stopped
-        network_mode: "service:vpn" # Route traffic through the VPN container
         networks:
             - vpn_network
         depends_on:
@@ -51,7 +50,6 @@ services:
         container_name: prowlarr
         depends_on:
             - vpn # Ensure Prowlarr starts after VPN
-        network_mode: "service:vpn" # Route traffic through the VPN container
         networks:
             - vpn_network
         environment:
@@ -67,7 +65,6 @@ services:
         container_name: radarr
         depends_on:
             - vpn # Ensure Radarr starts after VPN
-        network_mode: "service:vpn" # Route traffic through the VPN container
         networks:
             - vpn_network
         volumes:
