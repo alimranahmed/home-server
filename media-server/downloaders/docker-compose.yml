@@ -5,8 +5,6 @@ services:
         image: qmcgaw/gluetun
         container_name: vpn
         restart: unless-stopped
-        networks:
-            - vpn_network
         cap_add:
             - NET_ADMIN # This needed for vpn to modify network traffic
         devices:
