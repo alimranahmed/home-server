@@ -5,11 +5,13 @@ services:
         image: adguard/adguardhome
         container_name: adguardhome
         restart: unless-stopped
+        environment:
+            - TZ=Europe/Berlin
         ports:
             - "53:53/tcp"
             - "53:53/udp"
             - "81:80/tcp"
             - "3000:3000/tcp"
         volumes:
-            - /home-server-data/AdGuardHome/config:/opt/AdGuardHome/conf
-            - /home-server-data/AdGuardHome/work:/opt/AdGuardHome/work
+            - /home-server-data/AdGuardHome/config:/opt/adguardhome/conf
+            - /home-server-data/AdGuardHome/work:/opt/adguardhome/work

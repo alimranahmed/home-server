@@ -4,17 +4,17 @@ services:
     pihole:
         container_name: pihole
         image: pihole/pihole:latest
+        environment:
+            TZ: 'Europe/Berlin'
+            WEBPASSWORD: 'secret'
         ports:
             - "53:53/tcp"
             - "53:53/udp"
             - "67:67/udp"
             - "83:80/tcp"
-        environment:
-            TZ: 'Europe/Berlin'
-            WEBPASSWORD: 'secret'
         volumes:
-            - './etc-pihole:/etc/pihole'
-            - './etc-dnsmasq.d:/etc/dnsmasq.d'
+            - '/home-server-data/PiHole/pihole:/etc/pihole'
+            - '/home-server-data/PiHole/etc-dnsmasq.d:/etc/dnsmasq.d'
         cap_add:
             - NET_ADMIN
         restart: unless-stopped

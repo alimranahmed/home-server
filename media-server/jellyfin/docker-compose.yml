@@ -4,11 +4,11 @@ services:
     jellyfin:
         image: jellyfin/jellyfin:latest
         container_name: jellyfin
+        environment:
+            - TZ=Europe/Berlin
         ports:
-            - "8096:8096"
+            - "82:8096"
         volumes:
             - /home-server-data/jellyfin/config:/config
             - /home-server-data/contents:/media
-        environment:
-            - TZ=Europe/Berlin
         restart: unless-stopped
