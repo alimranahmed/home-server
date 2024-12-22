@@ -56,7 +56,8 @@ services:
         image: linuxserver/radarr
         container_name: radarr
         depends_on:
-            - qbittorrent  # Ensure Radarr starts after qBittorrent
+            - vpn # Ensure Radarr starts after VPN
+        network_mode: "service:vpn" # Route traffic through the VPN container
         ports:
             - "84:7878"  # Radarr Web UI exposed on port 84
         volumes:
