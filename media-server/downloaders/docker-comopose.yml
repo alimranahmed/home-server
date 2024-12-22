@@ -16,7 +16,7 @@ services:
         environment:
             - VPN_SERVICE_PROVIDER=private internet access
             - VPN_TYPE=openvpn
-            - OPENVPN_CONFIG_FILE=/home-server-data/GluetunVpn/PrivateVpnAccess/vpn_server_access_config.ovpn
+            - OPENVPN_CONFIG_FILE=/home-server-data/PrivateVpnAccess/vpn_server_access_config.ovpn
             - TZ=Europe/Berlin
             - FIREWALL_VPN_INPUT_PORTS=8080,6881
             - FIREWALL_OUTBOUND_SUBNETS=192.168.1.0/24
