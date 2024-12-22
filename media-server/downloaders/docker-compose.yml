@@ -12,7 +12,7 @@ services:
         volumes:
             - /home-server-data/GluetunVpn/config:/gluetun
         ports:
-            - "83:8080"       # qBittorrent Web UI (mapped to port 83)
+            - "8080:8080"       # qBittorrent Web UI (mapped to port 83)
             - "6881:6881/tcp" # Torrent TCP port
             - "6881:6881/udp" # Torrent UDP port
         environment:
