@@ -70,6 +70,7 @@ services:
         container_name: bazarr
         depends_on:
             - vpn
+        network_mode: "service:vpn" # Route traffic through the VPN container
         environment:
             - PUID=1000
             - PGID=1000
