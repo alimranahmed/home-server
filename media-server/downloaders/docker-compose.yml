@@ -15,8 +15,8 @@ services:
             - "8080:8080"     # qBittorrent Web UI on port 8080
             - "6881:6881/tcp" # Torrent TCP port
             - "6881:6881/udp" # Torrent UDP port
-            - "83:9696"  # Prowlarr Web UI exposed on port 83
-            - "84:7878"  # Radarr Web UI exposed on port 84
+            - "9696:9696"  # Prowlarr Web UI exposed on port 9696
+            - "7878:7878"  # Radarr Web UI exposed on port 7878
         environment:
             - VPN_SERVICE_PROVIDER=private internet access
             - OPENVPN_USER=${OPENVPN_USER}
