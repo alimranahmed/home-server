@@ -16,6 +16,7 @@ services:
             - "6881:6881/tcp" # Torrent TCP port
             - "6881:6881/udp" # Torrent UDP port
             - "83:9696"  # Prowlarr Web UI exposed on port 83
+            - "84:7878"  # Radarr Web UI exposed on port 84
         environment:
             - VPN_SERVICE_PROVIDER=private internet access
             - OPENVPN_USER=${OPENVPN_USER}
@@ -58,8 +59,6 @@ services:
         depends_on:
             - vpn # Ensure Radarr starts after VPN
         network_mode: "service:vpn" # Route traffic through the VPN container
-        ports:
-            - "84:7878"  # Radarr Web UI exposed on port 84
         volumes:
             - /home-server-data/Radarr/config:/config
             - /home-server-data/downloads:/downloads  # Shared downloads folder with qBittorrent
