@@ -17,12 +17,6 @@ services:
             - /dev/net/tun
         volumes:
             - /home-server-data/GluetunVpn/config:/gluetun
-        ports:
-            - "8080:8080"     # qBittorrent Web UI on port 8080
-            - "6881:6881/tcp" # Torrent TCP port
-            - "6881:6881/udp" # Torrent UDP port
-            - "9696:9696"  # Prowlarr Web UI exposed on port 9696
-            - "7878:7878"  # Radarr Web UI exposed on port 7878
         environment:
             - VPN_SERVICE_PROVIDER=private internet access
             - OPENVPN_USER=${OPENVPN_USER}
@@ -35,6 +29,10 @@ services:
         restart: unless-stopped
         networks:
             - shared_network
+        ports:
+            - "8080:8080"     # qBittorrent Web UI on port 8080
+            - "6881:6881/tcp" # Torrent TCP port
+            - "6881:6881/udp" # Torrent UDP port
         depends_on:
             - vpn
         environment:
@@ -52,6 +50,8 @@ services:
             - shared_network
         volumes:
             - /home-server-data/Prowlarr/config:/config
+        ports:
+            - "9696:9696"  # Prowlarr Web UI exposed on port 9696
         restart: unless-stopped
 
     radarr:
@@ -65,4 +65,6 @@ services:
             - /home-server-data/Radarr/config:/config
             - /home-server-data/downloads:/downloads  # Shared downloads folder with qBittorrent
             - /home-server-data/Contents:/media  # Shared media folder for movie storage(eg. Jellyfin)
+        ports:
+            - "7878:7878"  # Radarr Web UI exposed on port 7878
         restart: unless-stopped
