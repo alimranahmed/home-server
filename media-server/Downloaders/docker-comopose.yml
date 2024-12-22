@@ -1,0 +1,60 @@
+name: VPN
+
+services:
+    vpn:
+        image: qmcgaw/gluetun
+        container_name: vpn
+        cap_add:
+            - NET_ADMIN # This needed for vpn to modify network traffic
+        devices:
+            - /dev/net/tun
+        ports:
+            - "6881:6881/tcp" # Torrent TCP port
+            - "6881:6881/udp" # Torrent UDP port
+        volumes:
+            - /home-server-data/GluetunVpn/config:/gluetun
+        environment:
+            - VPN_SERVICE_PROVIDER=private internet access
+            - VPN_TYPE=openvpn
+            - OPENVPN_CONFIG_FILE=/home-server-data/GluetunVpn/PrivateVpnAccess/vpn_server_access_config.ovpn
+            - TZ=Europe/Berlin
+            - FIREWALL_VPN_INPUT_PORTS=8080,6881
+            - FIREWALL_OUTBOUND_SUBNETS=192.168.1.0/24
+        restart: unless-stopped
+
+    qbittorrent:
+        image: linuxserver/qbittorrent
+        container_name: qbittorrent
+        network_mode: "service:vpn" # Route traffic through the VPN container
+        depends_on:
+            - vpn
+        ports:
+            - "83:8080"           # Map port 83 of the host to port 8080 of the container for qBittorrent Web UI
+            - "6881:6881/tcp"     # Torrent TCP port
+            - "6881:6881/udp"     # Torrent UDP port
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/Berlin
+            - WEBUI_PORT=8080
+        volumes:
+            - /home-server-data/QBittorrent/config:/config
+            - /home-server-data/downloads:/downloads
+        restart: unless-stopped
+
+    radarr:
+        image: linuxserver/radarr
+        container_name: radarr
+        depends_on:
+            - qbittorrent  # Ensure Radarr starts after qBittorrent
+        ports:
+            - "84:7878"  # Radarr Web UI exposed on port 84
+        volumes:
+            - /home-server-data/Radarr/config:/config
+            - /home-server-data/downloads:/downloads  # Shared downloads folder with qBittorrent
+            - /home-server-data/Contents:/media  # Shared media folder for movie storage(eg. Jellyfin)
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/Berlin
+        restart: unless-stopped
