@@ -3,6 +3,8 @@ name: AdGuardHome
 services:
     AdGuardHome:
         image: adguard/adguardhome
+        container_name: adguardhome
+        restart: unless-stopped
         ports:
             - "53:53/tcp"
             - "53:53/udp"
@@ -11,5 +13,3 @@ services:
         volumes:
             - /home-server-data/AdGuardHome/config:/opt/AdGuardHome/conf
             - /home-server-data/AdGuardHome/work:/opt/AdGuardHome/work
-        environment:
-            - TZ=Europe/Berlin
