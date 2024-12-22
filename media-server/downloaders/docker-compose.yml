@@ -9,21 +9,18 @@ services:
             - NET_ADMIN # This needed for vpn to modify network traffic
         devices:
             - /dev/net/tun
-        ports:
-            - "83:8080"       # qBittorrent Web UI (mapped to port 83)
-            - "6881:6881/tcp" # Torrent TCP port
-            - "6881:6881/udp" # Torrent UDP port
         volumes:
             - /home-server-data/GluetunVpn/config:/gluetun
         environment:
             - VPN_SERVICE_PROVIDER=private internet access
             - OPENVPN_USER=${OPENVPN_USER}
             - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
-            - SERVER_REGIONS=${OPENVPN_REGION}
+            - SERVER_REGIONS=${OPENVPN_REGIONS}
 
     qbittorrent:
         image: linuxserver/qbittorrent
         container_name: qbittorrent
+        restart: unless-stopped
         network_mode: "service:vpn" # Route traffic through the VPN container
         depends_on:
             - vpn
@@ -35,7 +32,10 @@ services:
         volumes:
             - /home-server-data/QBittorrent/config:/config
             - /home-server-data/downloads:/downloads
-        restart: unless-stopped
+        ports:
+            - 83:8080
+            - 6881:6881
+            - 6881:6881/udp
 
     radarr:
         image: linuxserver/radarr
