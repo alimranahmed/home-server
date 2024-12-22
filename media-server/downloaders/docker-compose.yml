@@ -22,7 +22,7 @@ services:
             - SERVER_REGIONS=${OPENVPN_REGIONS}
 
     qbittorrent:
-        image: linuxserver/qbittorrent
+        image: qbittorrent/qbittorrent-nox
         container_name: qbittorrent
         restart: unless-stopped
         network_mode: "service:vpn" # Route traffic through the VPN container
