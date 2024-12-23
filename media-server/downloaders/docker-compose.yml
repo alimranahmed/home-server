@@ -35,7 +35,7 @@ services:
             - WEBUI_PORT=8080
         volumes:
             - /home-server-data/downloaders/qBittorrent/config:/config
-            - /home-server-data/downloads:/downloads
+            - /home-server-data/Contents/downloads:/downloads
 
     prowlarr: # for managing indexes and searching contents
         image: lscr.io/linuxserver/prowlarr:latest
@@ -55,7 +55,7 @@ services:
         network_mode: "service:vpn" # Route traffic through the VPN container
         volumes:
             - /home-server-data/downloaders/radarr/config:/config
-            - /home-server-data/downloads:/downloads  # Shared downloads folder with qBittorrent
+            - /home-server-data/Contents/downloads:/downloads  # Shared downloads folder with qBittorrent
             - /home-server-data/Contents:/media  # Shared media folder for movie storage(eg. Jellyfin)
         restart: unless-stopped
 
