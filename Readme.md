@@ -15,6 +15,8 @@ Either Adguard Home or Pi-Hole can be used. Adguard Home is recommented.
 - [Jellyfin](https://github.com/alimranahmed/home-server/tree/main/media-server/jellyfin)
 - [Downloaders](https://github.com/alimranahmed/home-server/tree/main/media-server/downloaders)
 
-
 ### Notice
 Not intended to use for copyright content
+
+### Web Server
+- [Uptime Kuma](https://github.com/alimranahmed/home-server/tree/main/web-server/uptime-kuma)
