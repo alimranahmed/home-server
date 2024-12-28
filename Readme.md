@@ -20,3 +20,4 @@ Not intended to use for copyright content
 
 ### Monitor
 - [Uptime Kuma](https://github.com/alimranahmed/home-server/tree/main/monitor/uptime-kuma)
+- [Lazy Docker](https://github.com/alimranahmed/home-server/tree/main/monitor/lazydocker)
