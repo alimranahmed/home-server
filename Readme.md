@@ -18,5 +18,5 @@ Either Adguard Home or Pi-Hole can be used. Adguard Home is recommented.
 ### Notice
 Not intended to use for copyright content
 
-### Web Server
-- [Uptime Kuma](https://github.com/alimranahmed/home-server/tree/main/web-server/uptime-kuma)
+### Monitor
+- [Uptime Kuma](https://github.com/alimranahmed/home-server/tree/main/monitor/uptime-kuma)
