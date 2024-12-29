@@ -10,7 +10,7 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo url('90')?>" class="text-blue-500 hover:underline">
+                    <a target="_blank" href="<?php echo url('90')?>" class="text-blue-500 hover:underline">
                         <?php echo url('90')?>
                     </a>
                 </div>
@@ -29,8 +29,8 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo url('81')?>" class="text-blue-500 hover:underline">
-                        Adblock: <?php echo url('90')?>
+                    <a target="_blank" href="<?php echo url('81')?>" class="text-blue-500 hover:underline">
+                        Adblock: <?php echo url('81')?>
                     </a>
                 </div>
             </dl>
@@ -48,7 +48,7 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo url('82')?>" class="text-blue-500 hover:underline">
+                    <a target="_blank" href="<?php echo url('82')?>" class="text-blue-500 hover:underline">
                         Streaming: <?php echo url('82')?>
                     </a>
                 </div>
@@ -61,7 +61,7 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo url('9696')?>" class="text-blue-500 hover:underline">
+                    <a target="_blank" href="<?php echo url('9696')?>" class="text-blue-500 hover:underline">
                         Indexer: <?php echo url('9696')?>
                     </a>
                 </div>
@@ -74,7 +74,7 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo url('7878')?>" class="text-blue-500 hover:underline">
+                    <a target="_blank" href="<?php echo url('7878')?>" class="text-blue-500 hover:underline">
                         Movie: <?php echo url('7878')?>
                     </a>
                 </div>
@@ -87,7 +87,7 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo url('6767')?>" class="text-blue-500 hover:underline">
+                    <a target="_blank" href="<?php echo url('6767')?>" class="text-blue-500 hover:underline">
                         Subtitle: <?php echo url('6767')?>
                     </a>
                 </div>
@@ -100,7 +100,7 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo url('8080')?>" class="text-blue-500 hover:underline">
+                    <a target="_blank" href="<?php echo url('8080')?>" class="text-blue-500 hover:underline">
                         Torrent: <?php echo url('8080')?>
                     </a>
                 </div>

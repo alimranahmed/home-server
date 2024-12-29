@@ -9,7 +9,7 @@
 <div class="border-b py-3 text-center">
     <h2 class="text-lg">
         <?php echo getenv('HOST_NAME') ?>
-        <span class="text-slate-500">(<?php echo getenv('HOST_OS') ?></span>
+        <span class="text-slate-500">(<?php echo getenv('HOST_OS') ?>)</span>
     </h2>
     <span class="text-md text-slate-500"><?php echo getenv('HOST_IP') ?></span>
 </div>
