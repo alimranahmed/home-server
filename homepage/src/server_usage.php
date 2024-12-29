@@ -5,10 +5,10 @@
     </div>
     <div class="flex items-center justify-center">
         <img class="size-12" src="/assets/icons/ram.png" alt="">
-        <?php echo memory()['used'].' / '.memory()['total'] ?>
+        <?php echo memory()['used'].' used / '.memory()['total'] ?>
     </div>
     <div class="flex items-center justify-center">
         <img class="size-12" src="/assets/icons/ssd.png" alt="">
-        <?php echo disk()['used'].' / '.disk()['total'] ?>
+        <?php echo disk()['used'].' used / '.disk()['total'] ?>
     </div>
 </div>

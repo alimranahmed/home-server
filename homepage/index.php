@@ -82,20 +82,41 @@ function memory(): array {
 }
 
 function disk(): array {
-    // Get the disk usage statistics for the root directory
-    $diskStats = shell_exec('df -h /');
+    // Get the disk usage statistics
+    $diskStats = shell_exec('df -h');
 
-    // Parse the output
-    preg_match('/(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/', $diskStats, $matches);
+    // Split the output into lines
+    $lines = explode("\n", trim($diskStats));
 
-    // Total, Used, Available, Mounted on
-    $totalDisk = $matches[2];
-    $usedDisk = $matches[3];
-    $availableDisk = $matches[4];
+    // Find the line for the root mount point "/"
+    $dataLine = null;
+    foreach ($lines as $line) {
+        if (str_contains($line, ' /')) {
+            $dataLine = $line;
+            break;
+        }
+    }
+
+    // If no line for "/" is found, return null
+    if ($dataLine === null) {
+        return []; // Root mount point not found
+    }
+
+    // Match the relevant fields: Size, Used, Available
+    preg_match('/\S+\s+([\d.]+[G|M|K|T])\s+([\d.]+[G|M|K|T])\s+([\d.]+[G|M|K|T])/', $dataLine, $matches);
+
+    if (count($matches) < 4) {
+        return []; // Unable to parse disk stats
+    }
+
+    // Extract total, used, and available space
+    $totalDisk = $matches[1];
+    $usedDisk = $matches[2];
+    $availableDisk = $matches[3];
 
     return [
         'total' => $totalDisk,
         'used' => $usedDisk,
-        'free' => $availableDisk,
+        'free' => $availableDisk
     ];
 }
