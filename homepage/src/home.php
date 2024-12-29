@@ -1,5 +1,7 @@
 <?php require 'layout/header.php'; ?>
 
+<?php require 'server_usage.php'; ?>
+
 <div class="my-3">
     <div>Monitor</div>
     <ul role="list" class="mt-3 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
