@@ -20,3 +20,7 @@ if (array_key_exists($requestUri, $routes)) {
 } else {
     require __DIR__.'/src/404.php';
 }
+
+function url(string $port): string {
+    return 'http://'.getenv('HOST_IP').':81';
+}

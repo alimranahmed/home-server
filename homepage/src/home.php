@@ -10,8 +10,8 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo getenv('HOST_IP')?>:90" class="text-blue-500 hover:underline">
-                        <?php echo getenv('HOST_IP')?>:90
+                    <a href="<?php echo url('90')?>" class="text-blue-500 hover:underline">
+                        <?php echo url('90')?>
                     </a>
                 </div>
             </dl>
@@ -29,8 +29,8 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo getenv('HOST_IP')?>:81" class="text-blue-500 hover:underline">
-                        Adblock: <?php echo getenv('HOST_IP')?>:81
+                    <a href="<?php echo url('81')?>" class="text-blue-500 hover:underline">
+                        Adblock: <?php echo url('90')?>
                     </a>
                 </div>
             </dl>
@@ -48,8 +48,8 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo getenv('HOST_IP')?>:82" class="text-blue-500 hover:underline">
-                        Streaming: <?php echo getenv('HOST_IP')?>:82
+                    <a href="<?php echo url('82')?>" class="text-blue-500 hover:underline">
+                        Streaming: <?php echo url('82')?>
                     </a>
                 </div>
             </dl>
@@ -61,8 +61,8 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo getenv('HOST_IP')?>:9696" class="text-blue-500 hover:underline">
-                        Indexer: <?php echo getenv('HOST_IP')?>:9696
+                    <a href="<?php echo url('9696')?>" class="text-blue-500 hover:underline">
+                        Indexer: <?php echo url('9696')?>
                     </a>
                 </div>
             </dl>
@@ -74,8 +74,8 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo getenv('HOST_IP')?>:7878" class="text-blue-500 hover:underline">
-                        Movie: <?php echo getenv('HOST_IP')?>:7878
+                    <a href="<?php echo url('7878')?>" class="text-blue-500 hover:underline">
+                        Movie: <?php echo url('7878')?>
                     </a>
                 </div>
             </dl>
@@ -87,8 +87,8 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo getenv('HOST_IP')?>:6767" class="text-blue-500 hover:underline">
-                        Subtitle: <?php echo getenv('HOST_IP')?>:6767
+                    <a href="<?php echo url('6767')?>" class="text-blue-500 hover:underline">
+                        Subtitle: <?php echo url('6767')?>
                     </a>
                 </div>
             </dl>
@@ -100,8 +100,8 @@
             </div>
             <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
                 <div class="flex justify-between gap-x-4 py-3">
-                    <a href="<?php echo getenv('HOST_IP')?>:8080" class="text-blue-500 hover:underline">
-                        Torrent: <?php echo getenv('HOST_IP')?>:8080
+                    <a href="<?php echo url('8080')?>" class="text-blue-500 hover:underline">
+                        Torrent: <?php echo url('8080')?>
                     </a>
                 </div>
             </dl>

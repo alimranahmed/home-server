@@ -11,5 +11,10 @@
             "email": "al.imran.cse@gmail.com"
         }
     ],
+    "config": {
+        "platform": {
+            "php": "8.4"
+        }
+    },
     "require": {}
 }

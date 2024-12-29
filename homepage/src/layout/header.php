@@ -9,8 +9,8 @@
 <div class="border-b py-3 text-center">
     <h2 class="text-lg">
         <?php echo getenv('HOST_NAME') ?>
-        <span class="text-slate-500">(<?php echo getenv('HOST_OS') ?>UBUNTU 20.04)</span>
+        <span class="text-slate-500">(<?php echo getenv('HOST_OS') ?></span>
     </h2>
-    <span class="text-md text-slate-500"><?php echo getenv('HOST_IP') ?>192.168.0.161</span>
+    <span class="text-md text-slate-500"><?php echo getenv('HOST_IP') ?></span>
 </div>
 <div class="max-w-full mx-auto px-5 lg:px-10 min-h-screen">
