@@ -1,0 +1,15 @@
+{
+    "name": "alimranahmed/home-server-homepage",
+    "autoload": {
+        "psr-4": {
+            "Alimranahmed\\HomeServerHomepage\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Al Imran Ahmed",
+            "email": "al.imran.cse@gmail.com"
+        }
+    ],
+    "require": {}
+}

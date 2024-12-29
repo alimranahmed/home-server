@@ -5,6 +5,10 @@
 2. To get public IP: `curl https://checkip.amazonaws.com`
 3. To get firewall status: `sudo ufw status`
 
+### Homepage
+The homepage of local server
+- [Homepage](https://github.com/alimranahmed/home-server/tree/main/homepage)
+
 ### Ad Blocker
 This will set up a DNS server that block ads. 
 Either Adguard Home or Pi-Hole can be used. Adguard Home is recommented.
