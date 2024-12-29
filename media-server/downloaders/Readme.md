@@ -14,5 +14,5 @@ Can download contents
 3. qBittorrent web UI can be accessed: `http://<machines-ip-address>:8080`
 4. Prowlarr web UI can be access: `http://<machines-ip-address>:9696`
 5. Radarr web UI can be access: `http://<machines-ip-address>:7878`
-6. **Check VPN** working: `docker exec -it qbittorrent curl https://checkip.amazonaws.com`
+6. **Check VPN** working: `docker exec -it qbittorrent curl https://ipinfo.io`
 7. **Check** qBittorrent doesn't work if VPN container is down
