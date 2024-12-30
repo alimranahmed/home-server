@@ -58,7 +58,7 @@ services:
         volumes:
             - /home-server-data/downloaders/radarr/config:/config
             - /home-server-data/Contents/downloads:/downloads  # Shared downloads folder with qBittorrent
-            - /home-server-data/Contents/movies:/movies  # Shared media folder for movie storage(eg. Jellyfin)
+            - /home-server-data/Contents/movies:/media  # Shared media folder for movie storage(eg. Jellyfin)
         restart: unless-stopped
 
     bazarr: # for downloading subtitles
@@ -74,4 +74,5 @@ services:
             - PGID=1000
         volumes:
             - /home-server-data/downloaders/bazarr/config:/config
+            - /home-server-data/Contents/movies:/movies
         restart: unless-stopped
