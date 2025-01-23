@@ -13,4 +13,4 @@
     </h2>
     <span class="text-md text-slate-500"><?php echo getenv('HOST_IP') ?></span>
 </div>
-<div class="max-w-full mx-auto px-5 lg:px-10 min-h-screen">
+<div class="max-w-xl md:max-w-2xl mx-auto px-5 lg:px-10 min-h-screen">

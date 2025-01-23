@@ -2,113 +2,72 @@
 
 <?php require 'server_usage.php'; ?>
 
+<?php
+$websiteGroups = [
+    "Monitor" => [
+        [
+            "name" => "Uptime Kuma",
+            "url" => url('90'),
+            "icon" => "/assets/icons/uptime-kuma.svg",
+        ],
+        [
+            "name" => "Adguard Home",
+            "url" => url('81'),
+            "icon" => "/assets/icons/adguard-home.png",
+        ],
+    ],
+    "Media Server" => [
+        [
+            "name" => "Jellyfin",
+            "url" => url('82'),
+            "icon" => "/assets/icons/jellyfin.png",
+        ],
+        [
+            "name" => "Prowlarr",
+            "url" => url('7878'),
+            "icon" => "/assets/icons/prowlarr.png",
+        ],
+        [
+            "name" => "Radarr",
+            "url" => url('9696'),
+            "icon" => "/assets/icons/radarr.png",
+        ],
+        [
+            "name" => "Radarr",
+            "url" => url('9696'),
+            "icon" => "/assets/icons/radarr.png",
+        ],
+        [
+            "name" => "Bazarr",
+            "url" => url('6767'),
+            "icon" => "/assets/icons/bazarr.png",
+        ],
+        [
+            "name" => "Qbittorrent",
+            "url" => url('8080'),
+            "icon" => "/assets/icons/qbittorrent.png",
+        ],
+    ]
+]
+?>
+
+<?php foreach ($websiteGroups as $group => $websites): ?>
 <div class="my-3">
-    <div>Monitor</div>
-    <ul role="list" class="mt-3 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
-        <li class="overflow-hidden rounded-xl border border-gray-200">
-            <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-3">
-                <img src="/assets/icons/uptime-kuma.svg" alt="Uptime Kuma" class="size-12">
-                <div class="text-sm/6 font-medium text-gray-900">Uptime Kuma</div>
+<!--    <div class="text-center underline">--><?php //echo $group ?><!--</div>-->
+    <div class="mt-3 grid grid-cols-3 gap-x-6 gap-y-8 xl:gap-x-8 justify-items-center">
+        <?php foreach ($websites as $website): ?>
+            <div class="overflow-hidden">
+                <a target="_blank" href="<?php echo $website['url'] ?>" class="text-center">
+                    <div class="h-24 md:h-32 h-24 md:w-32 rounded-xl border border-gray-200 p-4 text-sm/6 flex justify-center items-center">
+                        <img src="<?php echo $website['icon'] ?>" alt="<?php echo $website['name'] ?>" class="size-16"><br>
+                    </div>
+                    <div class="text-sm/6 font-medium text-gray-900"><?php echo $website['name'] ?></div>
+                </a>
             </div>
-            <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
-                <div class="flex justify-between gap-x-4 py-3">
-                    <a target="_blank" href="<?php echo url('90')?>" class="text-blue-500 hover:underline">
-                        <?php echo url('90')?>
-                    </a>
-                </div>
-            </dl>
-        </li>
-    </ul>
+        <?php endforeach; ?>
+    </div>
 </div>
-<hr>
-<div class="my-3">
-    <div>Ad Blocker</div>
-    <ul role="list" class="mt-3 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
-        <li class="overflow-hidden rounded-xl border border-gray-200">
-            <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-3">
-                <img src="/assets/icons/adguard-home.png" alt="Adguard Home" class="size-12">
-                <div class="text-sm/6 font-medium text-gray-900">Adguard Home</div>
-            </div>
-            <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
-                <div class="flex justify-between gap-x-4 py-3">
-                    <a target="_blank" href="<?php echo url('81')?>" class="text-blue-500 hover:underline">
-                        Adblock: <?php echo url('81')?>
-                    </a>
-                </div>
-            </dl>
-        </li>
-    </ul>
-</div>
-<hr>
-<div class="my-3">
-    <div>Media Server</div>
-    <ul role="list" class="mt-3 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
-        <li class="overflow-hidden rounded-xl border border-gray-200">
-            <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-3">
-                <img src="/assets/icons/jellyfin.png" alt="Jellyfin" class="size-12">
-                <div class="text-sm/6 font-medium text-gray-900">Jellyfin</div>
-            </div>
-            <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
-                <div class="flex justify-between gap-x-4 py-3">
-                    <a target="_blank" href="<?php echo url('82')?>" class="text-blue-500 hover:underline">
-                        Streaming: <?php echo url('82')?>
-                    </a>
-                </div>
-            </dl>
-        </li>
-        <li class="overflow-hidden rounded-xl border border-gray-200">
-            <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-3">
-                <img src="/assets/icons/prowlarr.png" alt="Prowlarr" class="size-12">
-                <div class="text-sm/6 font-medium text-gray-900">Prowlarr</div>
-            </div>
-            <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
-                <div class="flex justify-between gap-x-4 py-3">
-                    <a target="_blank" href="<?php echo url('9696')?>" class="text-blue-500 hover:underline">
-                        Indexer: <?php echo url('9696')?>
-                    </a>
-                </div>
-            </dl>
-        </li>
-        <li class="overflow-hidden rounded-xl border border-gray-200">
-            <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-3">
-                <img src="/assets/icons/radarr.png" alt="Radarr" class="size-12">
-                <div class="text-sm/6 font-medium text-gray-900">Radarr</div>
-            </div>
-            <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
-                <div class="flex justify-between gap-x-4 py-3">
-                    <a target="_blank" href="<?php echo url('7878')?>" class="text-blue-500 hover:underline">
-                        Movie: <?php echo url('7878')?>
-                    </a>
-                </div>
-            </dl>
-        </li>
-        <li class="overflow-hidden rounded-xl border border-gray-200">
-            <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-3">
-                <img src="/assets/icons/bazarr.png" alt="Bazarr" class="size-12">
-                <div class="text-sm/6 font-medium text-gray-900">Bazarr</div>
-            </div>
-            <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
-                <div class="flex justify-between gap-x-4 py-3">
-                    <a target="_blank" href="<?php echo url('6767')?>" class="text-blue-500 hover:underline">
-                        Subtitle: <?php echo url('6767')?>
-                    </a>
-                </div>
-            </dl>
-        </li>
-        <li class="overflow-hidden rounded-xl border border-gray-200">
-            <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-3">
-                <img src="/assets/icons/qbittorrent.png" alt="Qbittorrent" class="size-12">
-                <div class="text-sm/6 font-medium text-gray-900">Qbittorrent</div>
-            </div>
-            <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6">
-                <div class="flex justify-between gap-x-4 py-3">
-                    <a target="_blank" href="<?php echo url('8080')?>" class="text-blue-500 hover:underline">
-                        Torrent: <?php echo url('8080')?>
-                    </a>
-                </div>
-            </dl>
-        </li>
-    </ul>
-</div>
+<hr class="my-5">
+<?php endforeach; ?>
 
 <?php require 'layout/footer.php'; ?>
