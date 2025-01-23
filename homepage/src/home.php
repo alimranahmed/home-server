@@ -53,7 +53,6 @@ $websiteGroups = [
 
 <?php foreach ($websiteGroups as $group => $websites): ?>
 <div class="my-3">
-<!--    <div class="text-center underline">--><?php //echo $group ?><!--</div>-->
     <div class="mt-3 grid grid-cols-3 gap-x-6 gap-y-8 xl:gap-x-8 justify-items-center">
         <?php foreach ($websites as $website): ?>
             <div class="overflow-hidden">
@@ -61,7 +60,7 @@ $websiteGroups = [
                     <div class="h-24 md:h-32 h-24 md:w-32 rounded-xl border border-gray-200 p-4 text-sm/6 flex justify-center items-center">
                         <img src="<?php echo $website['icon'] ?>" alt="<?php echo $website['name'] ?>" class="size-16"><br>
                     </div>
-                    <div class="text-sm/6 font-medium text-gray-900"><?php echo $website['name'] ?></div>
+                    <div class="text-sm/6 font-medium text-slate-500"><?php echo $website['name'] ?></div>
                 </a>
             </div>
         <?php endforeach; ?>
