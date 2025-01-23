@@ -24,17 +24,13 @@ $websiteGroups = [
         ],
         [
             "name" => "Prowlarr",
-            "url" => url('7878'),
+            "url" => url('9696'),
             "icon" => "/assets/icons/prowlarr.png",
         ],
+
         [
             "name" => "Radarr",
-            "url" => url('9696'),
-            "icon" => "/assets/icons/radarr.png",
-        ],
-        [
-            "name" => "Radarr",
-            "url" => url('9696'),
+            "url" => url('7878'),
             "icon" => "/assets/icons/radarr.png",
         ],
         [
