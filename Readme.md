@@ -24,3 +24,7 @@ Not intended to use for copyright content
 
 ### Monitor
 - [Uptime Kuma](https://github.com/alimranahmed/home-server/tree/main/monitor/uptime-kuma)
+
+### Utilities
+- [Stirling-PDF](https://github.com/alimranahmed/home-server/tree/main/utilities/stirling-pdf)
+- [Mazanoke(Image)](https://github.com/alimranahmed/home-server/tree/main/utilities/mazanoke-image)
