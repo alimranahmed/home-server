@@ -16,6 +16,19 @@ $websiteGroups = [
             "icon" => "/assets/icons/adguard-home.png",
         ],
     ],
+    "Utilities" => [
+        [
+            "name" => "Stirling PDF",
+            "url" => url('50'),
+            "icon" => "/assets/icons/stirling-pdf.svg",
+        ],
+        [
+            "name" => "Mazanoke(Image)",
+            "url" => url('51'),
+            "icon" => "/assets/icons/mazanoke.png",
+        ],
+
+    ],
     "Media Server" => [
         [
             "name" => "Jellyfin",
