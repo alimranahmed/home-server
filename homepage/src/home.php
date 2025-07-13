@@ -1,30 +1,33 @@
-<?php require 'layout/header.php'; ?>
+<?php
+require 'layout/header.php';
+require 'server_usage.php';
+use Alimranahmed\HomeServerHomepage\Helpers\Url;
+?>
 
-<?php require 'server_usage.php'; ?>
 
 <?php
 $websiteGroups = [
     "Monitor" => [
         [
             "name" => "Uptime Kuma",
-            "url" => url('90'),
+            "url" => Url::withPort('90'),
             "icon" => "/assets/icons/uptime-kuma.svg",
         ],
         [
             "name" => "Adguard Home",
-            "url" => url('81'),
+            "url" => Url::withPort('81'),
             "icon" => "/assets/icons/adguard-home.png",
         ],
     ],
     "Utilities" => [
         [
             "name" => "Stirling PDF",
-            "url" => url('50'),
+            "url" => Url::withPort('50'),
             "icon" => "/assets/icons/stirling-pdf.svg",
         ],
         [
             "name" => "Mazanoke(Image)",
-            "url" => url('51'),
+            "url" => Url::withPort('51'),
             "icon" => "/assets/icons/mazanoke.png",
         ],
 
@@ -32,28 +35,28 @@ $websiteGroups = [
     "Media Server" => [
         [
             "name" => "Jellyfin",
-            "url" => url('82'),
+            "url" => Url::withPort('82'),
             "icon" => "/assets/icons/jellyfin.png",
         ],
         [
             "name" => "Prowlarr",
-            "url" => url('9696'),
+            "url" => Url::withPort('9696'),
             "icon" => "/assets/icons/prowlarr.png",
         ],
 
         [
             "name" => "Radarr",
-            "url" => url('7878'),
+            "url" => Url::withPort('7878'),
             "icon" => "/assets/icons/radarr.png",
         ],
         [
             "name" => "Bazarr",
-            "url" => url('6767'),
+            "url" => Url::withPort('6767'),
             "icon" => "/assets/icons/bazarr.png",
         ],
         [
             "name" => "Qbittorrent",
-            "url" => url('8080'),
+            "url" => Url::withPort('8080'),
             "icon" => "/assets/icons/qbittorrent.png",
         ],
     ]
