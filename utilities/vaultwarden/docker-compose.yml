@@ -6,4 +6,4 @@ services:
         volumes:
             - /home-server-data/vaultwarden/data/:/data/
         ports:
-            - 54:80
+            - 127.0.0.1:54:80 # only works with localhost if not https
