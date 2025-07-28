@@ -6,4 +6,4 @@ services:
         volumes:
             - /home-server-data/vaultwarden/data/:/data/
         ports:
-            - 53:80
+            - 54:80
