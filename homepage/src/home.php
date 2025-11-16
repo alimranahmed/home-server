@@ -10,23 +10,27 @@ $websiteGroups = [
     "Monitor" => [
         [
             "name" => "Uptime Kuma",
+            'clue' => null,
             "url" => Url::withPort('90'),
             "icon" => "/assets/icons/uptime-kuma.svg",
         ],
         [
             "name" => "Adguard Home",
+            'clue' => null,
             "url" => Url::withPort('81'),
             "icon" => "/assets/icons/adguard-home.png",
         ],
     ],
     "Utilities" => [
         [
-            "name" => "Stirling PDF",
+            "name" => "Stirling",
+            'clue' => 'PDF Editor',
             "url" => Url::withPort('50'),
             "icon" => "/assets/icons/stirling-pdf.svg",
         ],
         [
-            "name" => "Mazanoke(Image)",
+            "name" => "Mazanoke",
+            'clue' => 'Image Editor',
             "url" => Url::withPort('51'),
             "icon" => "/assets/icons/mazanoke.png",
         ],
@@ -35,27 +39,26 @@ $websiteGroups = [
     "Media Server" => [
         [
             "name" => "Jellyfin",
+            'clue' => 'Media Player',
             "url" => Url::withPort('82'),
             "icon" => "/assets/icons/jellyfin.png",
         ],
         [
             "name" => "Prowlarr",
+            'clue' => 'Index Manager',
             "url" => Url::withPort('9696'),
             "icon" => "/assets/icons/prowlarr.png",
         ],
 
         [
             "name" => "Radarr",
+            'clue' => 'Movie Search',
             "url" => Url::withPort('7878'),
             "icon" => "/assets/icons/radarr.png",
         ],
         [
-            "name" => "Bazarr",
-            "url" => Url::withPort('6767'),
-            "icon" => "/assets/icons/bazarr.png",
-        ],
-        [
             "name" => "Qbittorrent",
+            'clue' => null,
             "url" => Url::withPort('8080'),
             "icon" => "/assets/icons/qbittorrent.png",
         ],
@@ -72,7 +75,14 @@ $websiteGroups = [
                     <div class="h-24 md:h-32 h-24 md:w-32 rounded-xl border border-gray-200 p-4 text-sm/6 flex justify-center items-center">
                         <img src="<?php echo $website['icon'] ?>" alt="<?php echo $website['name'] ?>" class="size-16"><br>
                     </div>
-                    <div class="text-sm/6 font-medium text-slate-500"><?php echo $website['name'] ?></div>
+                    <div>
+                        <span class="text-sm/6 font-medium text-slate-600"><?php echo $website['name'] ?></span>
+                        <?php if ($website['clue']): ?>
+                            <span class="text-xs font-medium text-slate-400">
+                                (<?php echo $website['clue'] ?>)
+                            </span>
+                        <?php endif; ?>
+                    </div>
                 </a>
             </div>
         <?php endforeach; ?>

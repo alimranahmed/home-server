@@ -61,18 +61,18 @@ services:
             - /home-server-data/Contents/movies:/media  # Shared media folder for movie storage(eg. Jellyfin)
         restart: unless-stopped
 
-    bazarr: # for downloading subtitles
-        image: lscr.io/linuxserver/bazarr:latest
-        container_name: bazarr
-        depends_on:
-            - vpn
-            - qbittorrent
-            - radarr
-        network_mode: "service:vpn"
-        environment:
-            - PUID=1000
-            - PGID=1000
-        volumes:
-            - /home-server-data/downloaders/bazarr/config:/config
-            - /home-server-data/Contents/movies:/movies
-        restart: unless-stopped
+#    bazarr: # for downloading subtitles
+#        image: lscr.io/linuxserver/bazarr:latest
+#        container_name: bazarr
+#        depends_on:
+#            - vpn
+#            - qbittorrent
+#            - radarr
+#        network_mode: "service:vpn"
+#        environment:
+#            - PUID=1000
+#            - PGID=1000
+#        volumes:
+#            - /home-server-data/downloaders/bazarr/config:/config
+#            - /home-server-data/Contents/movies:/movies
+#        restart: unless-stopped
