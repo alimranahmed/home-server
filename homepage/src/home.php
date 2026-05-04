@@ -57,6 +57,12 @@ $websiteGroups = [
             "icon" => "/assets/icons/radarr.png",
         ],
         [
+            "name" => "Sonarr",
+            'clue' => 'TV Series Search',
+            "url" => Url::withPort('8989'),
+            "icon" => "/assets/icons/sonarr.png",
+        ],
+        [
             "name" => "Qbittorrent",
             'clue' => null,
             "url" => Url::withPort('8080'),

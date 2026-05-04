@@ -22,6 +22,7 @@ services:
             - "6881:6881/udp" # Torrent UDP port
             - "9696:9696" # Prowlarr Web UI exposed on port 9696
             - "7878:7878" # Radarr Web UI exposed on port 7878
+            - "8989:8989" # Sonarr Web UI exposed on port 8989
             - "6767:6767"  # Bazarr Web UI on port 6767
 
     qbittorrent: #torrent downloader used by prowlarr and radarr
@@ -59,6 +60,19 @@ services:
             - /home-server-data/downloaders/radarr/config:/config
             - /home-server-data/Contents/downloads:/downloads  # Shared downloads folder with qBittorrent
             - /home-server-data/Contents/movies:/media  # Shared media folder for movie storage(eg. Jellyfin)
+        restart: unless-stopped
+
+    sonarr: # for managing+downloading TV series with pre-specified quality,size etc.
+        image: linuxserver/sonarr
+        container_name: sonarr
+        depends_on:
+            - vpn
+            - qbittorrent
+        network_mode: "service:vpn" # Route traffic through the VPN container
+        volumes:
+            - /home-server-data/downloaders/sonarr/config:/config
+            - /home-server-data/Contents/downloads:/downloads  # Shared downloads folder with qBittorrent
+            - /home-server-data/Contents/tv:/media  # Shared media folder for TV series storage (eg. Jellyfin)
         restart: unless-stopped
 
 #    bazarr: # for downloading subtitles
