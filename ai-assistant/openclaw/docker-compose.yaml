@@ -1,46 +1,46 @@
 services:
-    openclaw:
+    openclaw-gateway:
         image: ghcr.io/openclaw/openclaw:latest
         container_name: openclaw
-
-        restart: unless-stopped
-
-        ports:
-            - "18789:18789"
-            - "18790:18790"
-            - "18791:18791"
-
         environment:
-            TZ: Europe/Berlin
-
-            # AI Provider Keys
+            HOME: /home/node
+            TERM: xterm-256color
             OPENAI_API_KEY: ${OPENAI_API_KEY}
             OPENAI_BASE_URL: ${OPENAI_BASE_URL}
             ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
-
-            # Optional: Local Ollama
-            OLLAMA_BASE_URL: ${OLLAMA_BASE_URL}
-
         volumes:
-            - /home-server-data/openclaw/data:/home/node/.openclaw
-            - /home-server-data/openclaw/workspace:/home/node/.openclaw/workspace
+            - ${OPENCLAW_CONFIG_DIR}:/home/node/.openclaw
+            - ${OPENCLAW_WORKSPACE_DIR}:/home/node/.openclaw/workspace
+        ports:
+            - "${OPENCLAW_GATEWAY_PORT:-18789}:18789"
+            - "${OPENCLAW_BRIDGE_PORT:-18790}:18790"
+        init: true
+        restart: unless-stopped
+        command:
+          [
+              "node",
+              "dist/index.js",
+              "gateway",
+              "--bind",
+              "${OPENCLAW_GATEWAY_BIND:-lan}",
+              "--port",
+              "18789",
+          ]
 
-        healthcheck:
-            test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000"]
-            interval: 30s
-            timeout: 10s
-            retries: 5
-            start_period: 40s
-
-        security_opt:
-            - no-new-privileges:true
-
-        tmpfs:
-            - /tmp
-
-        networks:
-            - openclaw-net
-
-networks:
-    openclaw-net:
-        driver: bridge
+    openclaw-cli:
+        image: ${OPENCLAW_IMAGE:-openclaw:local}
+        environment:
+            HOME: /home/node
+            TERM: xterm-256color
+            OPENCLAW_GATEWAY_TOKEN: ${OPENCLAW_GATEWAY_TOKEN}
+            BROWSER: echo
+            OPENAI_API_KEY: ${OPENAI_API_KEY}
+            OPENAI_BASE_URL: ${OPENAI_BASE_URL}
+            ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+        volumes:
+            - ${OPENCLAW_CONFIG_DIR}:/home/node/.openclaw
+            - ${OPENCLAW_WORKSPACE_DIR}:/home/node/.openclaw/workspace
+        stdin_open: true
+        tty: true
+        init: true
+        entrypoint: ["node", "dist/index.js"]
