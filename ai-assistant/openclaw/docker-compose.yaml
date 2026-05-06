@@ -6,7 +6,8 @@ services:
         restart: unless-stopped
 
         ports:
-            - "4000:3000"
+            - "18789:18789"
+            - "18790:18790"
 
         user: "node"
 
