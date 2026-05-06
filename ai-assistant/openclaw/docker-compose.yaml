@@ -29,6 +29,7 @@ services:
 
     openclaw-cli:
         image: ghcr.io/openclaw/openclaw:latest
+        container_name: openclaw-cli
         environment:
             HOME: /home/node
             TERM: xterm-256color
