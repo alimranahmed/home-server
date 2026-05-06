@@ -1,0 +1,43 @@
+services:
+    openclaw:
+        image: ghcr.io/openclaw/openclaw:latest
+        container_name: openclaw
+
+        restart: unless-stopped
+
+        ports:
+            - "3000:3000"
+
+        environment:
+            TZ: Europe/Berlin
+
+            # AI Provider Keys
+            OPENAI_API_KEY: ${OPENAI_API_KEY}
+            ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+
+            # Optional: Local Ollama
+            OLLAMA_BASE_URL: ${OLLAMA_BASE_URL}
+
+        volumes:
+            - /home-server-data/openclaw/data:/home/node/.openclaw
+            - /home-server-data/openclaw/workspace:/home/node/.openclaw/workspace
+
+        healthcheck:
+            test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000"]
+            interval: 30s
+            timeout: 10s
+            retries: 5
+            start_period: 40s
+
+        security_opt:
+            - no-new-privileges:true
+
+        tmpfs:
+            - /tmp
+
+        networks:
+            - openclaw-net
+
+networks:
+    openclaw-net:
+        driver: bridge
