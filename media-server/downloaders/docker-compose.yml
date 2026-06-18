@@ -12,7 +12,7 @@ services:
         volumes:
             - /home-server-data/downloaders/gluetunVpn/config:/gluetun
         environment:
-            - VPN_SERVICE_PROVIDER=private internet access
+            - VPN_SERVICE_PROVIDER=${OPENVPN_SERVICE_PROVIDER}
             - OPENVPN_USER=${OPENVPN_USER}
             - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
             - SERVER_REGIONS=${OPENVPN_REGIONS}
