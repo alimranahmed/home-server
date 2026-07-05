@@ -81,19 +81,20 @@ $websiteGroups = [
 <div class="my-3">
     <div class="mt-3 grid grid-cols-3 gap-x-6 gap-y-8 xl:gap-x-8 justify-items-center">
         <?php foreach ($websites as $website): ?>
-            <div class="overflow-hidden">
+            <div class="overflow-hidden relative">
                 <a target="_blank" href="<?php echo $website['url'] ?>" class="text-center">
                     <div class="h-24 md:h-32 h-24 md:w-32 rounded-xl border border-gray-200 p-4 text-sm/6 flex justify-center items-center">
                         <img src="<?php echo $website['icon'] ?>" alt="<?php echo $website['name'] ?>" class="size-16"><br>
                     </div>
-                    <div>
+                    <div class="flex items-center justify-center gap-1">
                         <span class="text-sm/6 font-medium text-slate-600"><?php echo $website['name'] ?></span>
-                        <?php if ($website['clue']): ?>
-                            <span class="text-xs font-medium text-slate-400">
-                                (<?php echo $website['clue'] ?>)
-                            </span>
-                        <?php endif; ?>
+                        <span data-health-dot="<?php echo htmlspecialchars($website['name']) ?>" class="size-2 rounded-full bg-slate-300"></span>
                     </div>
+                    <?php if ($website['clue']): ?>
+                        <div class="text-xs font-medium text-slate-400">
+                            <?php echo $website['clue'] ?>
+                        </div>
+                    <?php endif; ?>
                 </a>
             </div>
         <?php endforeach; ?>
@@ -101,5 +102,26 @@ $websiteGroups = [
 </div>
 <hr class="my-5">
 <?php endforeach; ?>
+
+<script>
+(function () {
+    function updateHealth() {
+        fetch('/api/health', { cache: 'no-store' })
+            .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+            .then(function (data) {
+                Object.keys(data).forEach(function (name) {
+                    var dot = document.querySelector('[data-health-dot="' + name + '"]');
+                    if (dot) {
+                        dot.className = 'size-2 rounded-full ' + (data[name] ? 'bg-green-500' : 'bg-red-500');
+                    }
+                });
+            })
+            .catch(function () {});
+    }
+
+    updateHealth();
+    setInterval(updateHealth, 30000);
+})();
+</script>
 
 <?php require 'layout/footer.php'; ?>

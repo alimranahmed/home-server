@@ -10,6 +10,7 @@ header('Cache-Control: no-store');
 $mem = Machine::memory();
 $disk = Machine::disk();
 $cpuPercent = Machine::cpu_used(false);
+$load = Machine::load_average();
 
 echo json_encode([
     'cpu' => [
@@ -26,4 +27,6 @@ echo json_encode([
         'used'  => $disk['used'] ?? null,
         'percent' => $disk['percent'] ?? 0,
     ],
+    'uptime' => Machine::uptime(),
+    'load' => $load,
 ]);

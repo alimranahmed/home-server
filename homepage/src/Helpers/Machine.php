@@ -151,4 +151,37 @@ class Machine
             'percent'     => $percent,
         ];
     }
+
+    public static function uptime(): string {
+        $uptime = file_get_contents('/proc/uptime');
+        $seconds = (int)strtok($uptime, ' ');
+
+        $days = floor($seconds / 86400);
+        $hours = floor(($seconds % 86400) / 3600);
+
+        if ($days > 0) {
+            return "{$days}d {$hours}h";
+        }
+        return "{$hours}h";
+    }
+
+    public static function load_average(): array {
+        $loadavg = file_get_contents('/proc/loadavg');
+        $parts = explode(' ', $loadavg);
+
+        return [
+            '1min'  => (float)$parts[0],
+            '5min'  => (float)$parts[1],
+            '15min' => (float)$parts[2],
+        ];
+    }
+
+    public static function check_port(string $host, int $port): bool {
+        $sock = @fsockopen($host, $port, $errno, $errstr, 1);
+        if ($sock === false) {
+            return false;
+        }
+        fclose($sock);
+        return true;
+    }
 }
