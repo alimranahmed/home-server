@@ -2,22 +2,16 @@
 require_once __DIR__.'/vendor/autoload.php';
 
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
 $requestUri = rtrim($requestUri, '/');
-
-// JSON stats endpoint — bypass the layout and return early.
-if ($requestUri === '/api/stats') {
-    require __DIR__ . '/src/api/stats.php';
-    return;
-}
 
 $routes = [
     '' => 'home.php',
+    '/api/stats' => 'api/stats.php',
+    '/api/health' => 'api/health.php',
 ];
 
 if (array_key_exists($requestUri, $routes)) {
-    $page = $routes[$requestUri];
-    require __DIR__."/src/{$page}";
+    require __DIR__ . '/src/' . $routes[$requestUri];
 } else {
     require __DIR__.'/src/404.php';
 }

@@ -207,7 +207,7 @@ class Machine
             $history = array_slice($history, -60);
         }
 
-        @file_put_contents($cacheFile, json_encode($history));
+        $written = @file_put_contents($cacheFile, json_encode($history));
 
         return $history;
     }
