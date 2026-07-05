@@ -34,7 +34,12 @@ $websiteGroups = [
             "url" => Url::withPort('51'),
             "icon" => "/assets/icons/mazanoke.png",
         ],
-
+        [
+            'name' => 'OpenClaw',
+            'clue' => 'AI Agent',
+            'url' => Url::withPort('http://192.168.178.2:18789/'),
+            'icon' => '/assets/icons/openclaw.svg',
+        ],
     ],
     "Media Server" => [
         [
