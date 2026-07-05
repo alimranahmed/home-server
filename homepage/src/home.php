@@ -37,7 +37,7 @@ $websiteGroups = [
         [
             'name' => 'OpenClaw',
             'clue' => 'AI Agent',
-            'url' => Url::withPort('http://192.168.178.2:18789/'),
+            'url' => Url::withPort('18789'),
             'icon' => '/assets/icons/openclaw.svg',
         ],
     ],
