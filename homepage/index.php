@@ -5,6 +5,12 @@ $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $requestUri = rtrim($requestUri, '/');
 
+// JSON stats endpoint — bypass the layout and return early.
+if ($requestUri === '/api/stats') {
+    require __DIR__ . '/src/api/stats.php';
+    return;
+}
+
 $routes = [
     '' => 'home.php',
 ];
