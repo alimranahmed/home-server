@@ -184,4 +184,52 @@ class Machine
         fclose($sock);
         return true;
     }
+
+    public static function history(): array {
+        $cacheFile = sys_get_temp_dir() . '/homeserver_history';
+        $mem = self::memory();
+        $cpuPercent = self::cpu_used(false);
+
+        $newSample = [
+            'time' => time(),
+            'cpu' => $cpuPercent,
+            'memory' => $mem['percent'],
+        ];
+
+        $history = [];
+        $existing = @file_get_contents($cacheFile);
+        if ($existing) {
+            $history = json_decode($existing, true) ?? [];
+        }
+
+        $history[] = $newSample;
+        if (count($history) > 60) {
+            $history = array_slice($history, -60);
+        }
+
+        @file_put_contents($cacheFile, json_encode($history));
+
+        return $history;
+    }
+
+    public static function sparkline(array $values, int $width = 80, int $height = 20): string {
+        if (count($values) < 2) {
+            return '';
+        }
+
+        $min = min($values);
+        $max = max($values);
+        $range = $max - $min;
+        if ($range < 1) $range = 1;
+
+        $points = [];
+        $count = count($values);
+        foreach ($values as $i => $v) {
+            $x = ($i / ($count - 1)) * $width;
+            $y = $height - (($v - $min) / $range) * $height;
+            $points[] = "$x,$y";
+        }
+
+        return '<svg width="' . $width . '" height="' . $height . '" class="inline"><polyline points="' . implode(' ', $points) . '" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+    }
 }

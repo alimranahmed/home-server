@@ -48,9 +48,22 @@ $load = Machine::load_average();
     <span id="updated-display">Updated just now</span>
 </div>
 
+<div class="mx-2 md:mx-6 mt-3 flex gap-6 text-xs text-slate-500">
+    <div class="flex items-center gap-2">
+        <span>CPU</span>
+        <span id="sparkline-cpu"></span>
+    </div>
+    <div class="flex items-center gap-2">
+        <span>MEM</span>
+        <span id="sparkline-memory"></span>
+    </div>
+</div>
+
 <script>
 (function () {
     var lastUpdate = Date.now();
+    var cpuHistory = [];
+    var memHistory = [];
 
     function getBarColor(percent) {
         if (percent > 95) return 'bg-red-500';
@@ -65,6 +78,27 @@ $load = Machine::load_average();
             bar.style.width = p + '%';
             bar.className = 'h-full rounded-full transition-[width] duration-500 ' + getBarColor(percent);
         }
+    }
+
+    function renderSparkline(containerId, values, color) {
+        var el = document.getElementById(containerId);
+        if (!el || values.length < 2) return;
+
+        var width = 80, height = 20;
+        var min = Math.min(...values);
+        var max = Math.max(...values);
+        var range = max - min;
+        if (range < 1) range = 1;
+
+        var points = [];
+        var count = values.length;
+        values.forEach(function(v, i) {
+            var x = (i / (count - 1)) * width;
+            var y = height - ((v - min) / range) * height;
+            points.push(x + ',' + y);
+        });
+
+        el.innerHTML = '<svg width="' + width + '" height="' + height + '" class="inline"><polyline points="' + points.join(' ') + '" fill="none" stroke="' + color + '" stroke-width="1.5"/></svg>';
     }
 
     function refresh() {
@@ -100,6 +134,13 @@ $load = Machine::load_average();
                 }
                 if (data.load) {
                     document.getElementById('load-display').textContent = 'Load ' + data.load['1min'] + ' / ' + data.load['5min'] + ' / ' + data.load['15min'];
+                }
+
+                if (data.history) {
+                    cpuHistory = data.history.cpu;
+                    memHistory = data.history.memory;
+                    renderSparkline('sparkline-cpu', cpuHistory, '#64748b');
+                    renderSparkline('sparkline-memory', memHistory, '#64748b');
                 }
             })
             .catch(function () { /* network blip — try again next tick */ });

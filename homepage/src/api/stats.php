@@ -11,6 +11,7 @@ $mem = Machine::memory();
 $disk = Machine::disk();
 $cpuPercent = Machine::cpu_used(false);
 $load = Machine::load_average();
+$history = Machine::history();
 
 echo json_encode([
     'cpu' => [
@@ -29,4 +30,8 @@ echo json_encode([
     ],
     'uptime' => Machine::uptime(),
     'load' => $load,
+    'history' => [
+        'cpu' => array_column($history, 'cpu'),
+        'memory' => array_column($history, 'memory'),
+    ],
 ]);
