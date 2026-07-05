@@ -7,7 +7,6 @@ $requestUri = rtrim($requestUri, '/');
 $routes = [
     '' => 'home.php',
     '/api/stats' => 'api/stats.php',
-    '/api/health' => 'api/health.php',
 ];
 
 if (array_key_exists($requestUri, $routes)) {

@@ -88,7 +88,6 @@ $websiteGroups = [
                     </div>
                     <div class="flex items-center justify-center gap-1">
                         <span class="text-sm/6 font-medium text-slate-600"><?php echo $website['name'] ?></span>
-                        <span data-health-dot="<?php echo htmlspecialchars($website['name']) ?>" class="size-2 rounded-full bg-slate-300"></span>
                     </div>
                     <?php if ($website['clue']): ?>
                         <div class="text-xs font-medium text-slate-400">
@@ -102,26 +101,5 @@ $websiteGroups = [
 </div>
 <hr class="my-5">
 <?php endforeach; ?>
-
-<script>
-(function () {
-    function updateHealth() {
-        fetch('/api/health', { cache: 'no-store' })
-            .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
-            .then(function (data) {
-                Object.keys(data).forEach(function (name) {
-                    var dot = document.querySelector('[data-health-dot="' + name + '"]');
-                    if (dot) {
-                        dot.className = 'size-2 rounded-full ' + (data[name] ? 'bg-green-500' : 'bg-red-500');
-                    }
-                });
-            })
-            .catch(function () {});
-    }
-
-    updateHealth();
-    setInterval(updateHealth, 30000);
-})();
-</script>
 
 <?php require 'layout/footer.php'; ?>

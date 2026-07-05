@@ -2,7 +2,6 @@ services:
     web:
         image: nginx:alpine
         container_name: php-nginx
-        network_mode: host
         ports:
             - "80:80"
         volumes:
@@ -15,7 +14,6 @@ services:
     php:
         image: php:8.4-fpm
         container_name: php-fpm
-        network_mode: host
         environment:
             - HOST_NAME=${HOST_NAME}
             - HOST_IP=${HOST_IP}

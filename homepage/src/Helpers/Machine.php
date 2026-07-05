@@ -176,15 +176,6 @@ class Machine
         ];
     }
 
-    public static function check_port(string $host, int $port): bool {
-        $sock = @fsockopen($host, $port, $errno, $errstr, 1);
-        if ($sock === false) {
-            return false;
-        }
-        fclose($sock);
-        return true;
-    }
-
     public static function history(): array {
         $cacheFile = sys_get_temp_dir() . '/homeserver_history';
         $mem = self::memory();
