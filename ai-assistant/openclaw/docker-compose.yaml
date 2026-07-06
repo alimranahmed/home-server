@@ -1,6 +1,6 @@
 services:
     openclaw-gateway:
-        image: ghcr.io/openclaw/openclaw:latest
+        build: .
         container_name: openclaw
         environment:
             HOME: /home/node
@@ -27,7 +27,7 @@ services:
           ]
 
     openclaw-cli:
-        image: ghcr.io/openclaw/openclaw:latest
+        build: .
         container_name: openclaw-cli
         environment:
             HOME: /home/node
