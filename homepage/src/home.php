@@ -35,6 +35,12 @@ $websiteGroups = [
             "icon" => "/assets/icons/mazanoke.png",
         ],
         [
+            "name" => "Excalidraw",
+            'clue' => 'Virtual Whiteboard',
+            "url" => Url::withPort('52'),
+            "icon" => "/assets/icons/excalidraw.png",
+        ],
+        [
             'name' => 'OpenClaw',
             'clue' => 'AI Agent',
             'url' => Url::withPort('18789'),
