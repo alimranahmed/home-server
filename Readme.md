@@ -28,5 +28,4 @@ Not intended to use for copyright content
 ### Utilities
 - [Stirling-PDF](https://github.com/alimranahmed/home-server/tree/main/utilities/stirling-pdf)
 - [Mazanoke(Image)](https://github.com/alimranahmed/home-server/tree/main/utilities/mazanoke-image)
-- [OpenClaw(AI Agent)](https://github.com/alimranahmed/home-server/tree/main/ai-assistant/openclaw)
 - [Excalidraw(Virtual Whiteboard)](https://github.com/alimranahmed/home-server/tree/main/utilities/excalidraw)
