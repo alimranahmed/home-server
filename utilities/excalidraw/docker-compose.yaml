@@ -14,7 +14,7 @@ services:
             - room
 
     storage:
-        image: alswl/excalidraw-storage-backend:latest
+        image: alswl/excalidraw-storage-backend:v2023.11.11
         restart: unless-stopped
         ports:
             - "${STORAGE_PORT}:8081"
