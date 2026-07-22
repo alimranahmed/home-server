@@ -10,7 +10,7 @@ services:
             - storage
             - room
     excalidraw:
-        image: alswl/excalidraw:latest
+        image: alswl/excalidraw:v0.18.1-fork-b2
         expose:
             - "80"
         environment:
@@ -31,7 +31,7 @@ services:
             - PORT=8081
 
     room:
-        image: excalidraw/excalidraw-room:latest
+        image: excalidraw/excalidraw-room:sha-49bf529
         restart: unless-stopped
         expose:
             - "80"
